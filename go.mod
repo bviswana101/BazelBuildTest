@@ -1,6 +1,6 @@
 module github.com/bviswana101/BazelBuildTest/go/operator
 
-go 1.18
+go 1.17
 
 require (
 	istio.io/client-go v1.14.0

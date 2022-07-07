@@ -13,29 +13,17 @@
     "@bazel/typescript": "1.6.0",
     "@types/node": "13.13.12",
     "@types/signale": "1.4.4",
-    "@types/uuid": "7.0.5",
     "signale": "1.4.0",
     "ts-node": "8.6.2",
-    "tsconfig-paths": "3.8.0",
     "ttypescript": "1.5.13",
     "typescript": "3.9.10",
     "typescript-transform-paths": "1.1.15"
   },
   "scripts": {},
   "workspaces": [
-    "ts/packages/*",
-    "ts/microservices/*",
-    "ts/utils/*",
-    "kubernetes/"
+    "ts/*"
   ],
   "dependencies": {
-    "@kubernetes/client-node": "0.14.3",
-    "@octokit/rest": "18.0.12",
-    "@types/cors": "2.8.12",
-    "@types/morgan": "1.9.3",
-    "@types/ms": "0.7.31",
-    "cls-hooked": "4.2.2",
-    "prom-client": "12.0.0",
-    "request": "2.88.2"
+    "@kubernetes/client-node": "0.14.3"
   }
 }
