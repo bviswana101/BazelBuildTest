@@ -6,7 +6,7 @@
 # gazelle:exclude go/chaincode
 # gazelle:exclude node_modules
 # update_deb_packages boilerplate
-load("@rules_debian//tools/update_deb_packages:update_deb_packages.bzl", "update_deb_packages")
+#load("@rules_debian//tools/update_deb_packages:update_deb_packages.bzl", "update_deb_packages")
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
 # automatically generates BUILD files for go projects
@@ -35,9 +35,9 @@ exports_files(
     visibility = ["//visibility:public"],
 )
 
-update_deb_packages(
-    name = "update_deb_packages",
-    pgp_keys = [
-        "@stretch_archive_key//file",
-    ],
-)
+#update_deb_packages(
+#    name = "update_deb_packages",
+#    pgp_keys = [
+#        "@stretch_archive_key//file",
+#    ],
+#)

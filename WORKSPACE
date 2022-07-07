@@ -86,10 +86,10 @@ load("@rules_pkg//:deps.bzl", "rules_pkg_dependencies")
 
 rules_pkg_dependencies()
 
-local_repository(
-    name = "rules_debian",
-    path = "vendor/deb_packages",
-)
+#local_repository(
+#    name = "rules_debian",
+#    path = "vendor/deb_packages",
+#)
 
 #########################################
 # DOCKER
@@ -262,7 +262,7 @@ go()
 #install_tools()
 
 # MAKE & GCC
-load("@rules_debian//:deb_packages.bzl", "deb_packages")
+#load("@rules_debian//:deb_packages.bzl", "deb_packages")
 
 # The Debian stretch archive signing key
 # Source: https://ftp-master.debian.org/keys.html
@@ -274,60 +274,60 @@ http_file(
     urls = ["https://ftp-master.debian.org/keys/archive-key-9.asc"],
 )
 
-deb_packages(
-    name = "debian_stretch_amd64",
-    arch = "amd64",
-    distro = "stretch",
-    distro_type = "debian",
-    mirrors = [
-        "http://http.us.debian.org/debian",
-    ],
-    packages = {
-        "binutils": "pool/main/b/binutils/binutils_2.28-5_amd64.deb",
-        "g++": "pool/main/g/gcc-defaults/g++_6.3.0-4_amd64.deb",
-        "gcc": "pool/main/g/gcc-defaults/gcc_6.3.0-4_amd64.deb",
-        "gcc-6": "pool/main/g/gcc-6/gcc-6_6.3.0-18+deb9u1_amd64.deb",
-        "libasan3": "pool/main/g/gcc-6/libasan3_6.3.0-18+deb9u1_amd64.deb",
-        "libatomic1": "pool/main/g/gcc-6/libatomic1_6.3.0-18+deb9u1_amd64.deb",
-        "libc-dev-bin": "pool/main/g/glibc/libc-dev-bin_2.24-11+deb9u4_amd64.deb",
-        "libc6-dev": "pool/main/g/glibc/libc6-dev_2.24-11+deb9u4_amd64.deb",
-        "libcc1-0": "pool/main/g/gcc-6/libcc1-0_6.3.0-18+deb9u1_amd64.deb",
-        "libcilkrts5": "pool/main/g/gcc-6/libcilkrts5_6.3.0-18+deb9u1_amd64.deb",
-        "libgcc-6-dev": "pool/main/g/gcc-6/libgcc-6-dev_6.3.0-18+deb9u1_amd64.deb",
-        "libgomp1": "pool/main/g/gcc-6/libgomp1_6.3.0-18+deb9u1_amd64.deb",
-        "libitm1": "pool/main/g/gcc-6/libitm1_6.3.0-18+deb9u1_amd64.deb",
-        "liblsan0": "pool/main/g/gcc-6/liblsan0_6.3.0-18+deb9u1_amd64.deb",
-        "libmpx2": "pool/main/g/gcc-6/libmpx2_6.3.0-18+deb9u1_amd64.deb",
-        "libquadmath0": "pool/main/g/gcc-6/libquadmath0_6.3.0-18+deb9u1_amd64.deb",
-        "libtsan0": "pool/main/g/gcc-6/libtsan0_6.3.0-18+deb9u1_amd64.deb",
-        "libubsan0": "pool/main/g/gcc-6/libubsan0_6.3.0-18+deb9u1_amd64.deb",
-        "linux-libc-dev": "pool/main/l/linux/linux-libc-dev_4.9.228-1_amd64.deb",
-        "make": "pool/main/m/make-dfsg/make_4.1-9.1_amd64.deb",
-    },
-    packages_sha256 = {
-        "binutils": "b86a5bf3ff150ef74c1a452564c6480a8f81f3f27376b121a76783dc5e59d352",
-        "g++": "3b61f34c9fa121c01287251acaed3f5754ddb83788bfc0bd899ee859e9604861",
-        "gcc": "64902f7486389eaf20a9ff8efaed81cb41948b43453fb6be4472418bca0a231b",
-        "gcc-6": "c5a6be3bc9b061ea35f33444ae063581dea2dae7eb34f960b2ae371f03b5dec7",
-        "libasan3": "6c0176f148443307ac5d0a8a6e0db6e96fbfbc29bc973d13d62ec8aba53d68b9",
-        "libatomic1": "ef5519a8bab1b0ec0e44f40a5626b8891e9331fdcd9bb6980269f16d546bb26d",
-        "libc-dev-bin": "f165e460021e06cb932acdd00a892c01f96634be03b3299e66d397c7376dc2c6",
-        "libc6-dev": "3e7655930adc6ed69ddb1c263ef6fa428590e19479863785adc723367f6bf21d",
-        "libcc1-0": "1808ae68b1fa553becf248d7090f6d0dc0f64be6901328f0728adc3c036ec8fd",
-        "libcilkrts5": "2489bc1bac4b3ee2ed276620ae8ad06fade837c59569c055552623252d389419",
-        "libgcc-6-dev": "fbaa19b872bee99a443319da415ae2de346d72d15b12dc3d0a4c3607b154b884",
-        "libgomp1": "31f7549160118004fda234a88dbaa60df6d9611110b9ab0f5fa2da0b45ddce78",
-        "libitm1": "740114fcc1f943b869590ae2d86f0e715ccda931de310e96a640f05084496554",
-        "liblsan0": "8dbb4002c1b71fa022d6a84c7bfff3c8c4bc1f55e9a04b896769f7eb3fc7e10f",
-        "libmpx2": "2bc36bd599bf07300fbc0bc92f72a1796bbc55ee1d50cdcf8f4edddf9ea0c79f",
-        "libquadmath0": "a98030608d1b8eb07d2028ae5b03e1a83f6ae07fda4c765c096f5042992a27f0",
-        "libtsan0": "267b3cd479601cd128279fe2135ba0ca1b5c97658c64ef361d13cc32f63345e5",
-        "libubsan0": "294323c31db3b8d25bb7f8a89b36b7ec9419aa776d9c7d34a3452c50d6357d5e",
-        "linux-libc-dev": "ac6dd89cc5fafd046f185cc46d119180eaa72bb2090c89b3965eadae92d6f5e5",
-        "make": "577f98ca158bd55a32f6f5d1f57980d64136dab56c7e7b799d09a2aba6ba9de4",
-    },
-    pgp_key = "stretch_archive_key",
-)
+#deb_packages(
+#    name = "debian_stretch_amd64",
+#    arch = "amd64",
+#    distro = "stretch",
+#    distro_type = "debian",
+#    mirrors = [
+#        "http://http.us.debian.org/debian",
+#    ],
+#    packages = {
+#        "binutils": "pool/main/b/binutils/binutils_2.28-5_amd64.deb",
+#        "g++": "pool/main/g/gcc-defaults/g++_6.3.0-4_amd64.deb",
+#        "gcc": "pool/main/g/gcc-defaults/gcc_6.3.0-4_amd64.deb",
+#        "gcc-6": "pool/main/g/gcc-6/gcc-6_6.3.0-18+deb9u1_amd64.deb",
+#        "libasan3": "pool/main/g/gcc-6/libasan3_6.3.0-18+deb9u1_amd64.deb",
+#        "libatomic1": "pool/main/g/gcc-6/libatomic1_6.3.0-18+deb9u1_amd64.deb",
+#        "libc-dev-bin": "pool/main/g/glibc/libc-dev-bin_2.24-11+deb9u4_amd64.deb",
+#        "libc6-dev": "pool/main/g/glibc/libc6-dev_2.24-11+deb9u4_amd64.deb",
+#        "libcc1-0": "pool/main/g/gcc-6/libcc1-0_6.3.0-18+deb9u1_amd64.deb",
+#        "libcilkrts5": "pool/main/g/gcc-6/libcilkrts5_6.3.0-18+deb9u1_amd64.deb",
+#        "libgcc-6-dev": "pool/main/g/gcc-6/libgcc-6-dev_6.3.0-18+deb9u1_amd64.deb",
+#        "libgomp1": "pool/main/g/gcc-6/libgomp1_6.3.0-18+deb9u1_amd64.deb",
+#        "libitm1": "pool/main/g/gcc-6/libitm1_6.3.0-18+deb9u1_amd64.deb",
+#        "liblsan0": "pool/main/g/gcc-6/liblsan0_6.3.0-18+deb9u1_amd64.deb",
+#        "libmpx2": "pool/main/g/gcc-6/libmpx2_6.3.0-18+deb9u1_amd64.deb",
+#        "libquadmath0": "pool/main/g/gcc-6/libquadmath0_6.3.0-18+deb9u1_amd64.deb",
+#        "libtsan0": "pool/main/g/gcc-6/libtsan0_6.3.0-18+deb9u1_amd64.deb",
+#        "libubsan0": "pool/main/g/gcc-6/libubsan0_6.3.0-18+deb9u1_amd64.deb",
+#        "linux-libc-dev": "pool/main/l/linux/linux-libc-dev_4.9.228-1_amd64.deb",
+#        "make": "pool/main/m/make-dfsg/make_4.1-9.1_amd64.deb",
+#    },
+#    packages_sha256 = {
+#        "binutils": "b86a5bf3ff150ef74c1a452564c6480a8f81f3f27376b121a76783dc5e59d352",
+#        "g++": "3b61f34c9fa121c01287251acaed3f5754ddb83788bfc0bd899ee859e9604861",
+#        "gcc": "64902f7486389eaf20a9ff8efaed81cb41948b43453fb6be4472418bca0a231b",
+#        "gcc-6": "c5a6be3bc9b061ea35f33444ae063581dea2dae7eb34f960b2ae371f03b5dec7",
+#        "libasan3": "6c0176f148443307ac5d0a8a6e0db6e96fbfbc29bc973d13d62ec8aba53d68b9",
+#        "libatomic1": "ef5519a8bab1b0ec0e44f40a5626b8891e9331fdcd9bb6980269f16d546bb26d",
+#        "libc-dev-bin": "f165e460021e06cb932acdd00a892c01f96634be03b3299e66d397c7376dc2c6",
+#        "libc6-dev": "3e7655930adc6ed69ddb1c263ef6fa428590e19479863785adc723367f6bf21d",
+#        "libcc1-0": "1808ae68b1fa553becf248d7090f6d0dc0f64be6901328f0728adc3c036ec8fd",
+#        "libcilkrts5": "2489bc1bac4b3ee2ed276620ae8ad06fade837c59569c055552623252d389419",
+#        "libgcc-6-dev": "fbaa19b872bee99a443319da415ae2de346d72d15b12dc3d0a4c3607b154b884",
+#        "libgomp1": "31f7549160118004fda234a88dbaa60df6d9611110b9ab0f5fa2da0b45ddce78",
+#        "libitm1": "740114fcc1f943b869590ae2d86f0e715ccda931de310e96a640f05084496554",
+#        "liblsan0": "8dbb4002c1b71fa022d6a84c7bfff3c8c4bc1f55e9a04b896769f7eb3fc7e10f",
+#        "libmpx2": "2bc36bd599bf07300fbc0bc92f72a1796bbc55ee1d50cdcf8f4edddf9ea0c79f",
+#        "libquadmath0": "a98030608d1b8eb07d2028ae5b03e1a83f6ae07fda4c765c096f5042992a27f0",
+#        "libtsan0": "267b3cd479601cd128279fe2135ba0ca1b5c97658c64ef361d13cc32f63345e5",
+#        "libubsan0": "294323c31db3b8d25bb7f8a89b36b7ec9419aa776d9c7d34a3452c50d6357d5e",
+#        "linux-libc-dev": "ac6dd89cc5fafd046f185cc46d119180eaa72bb2090c89b3965eadae92d6f5e5",
+#        "make": "577f98ca158bd55a32f6f5d1f57980d64136dab56c7e7b799d09a2aba6ba9de4",
+#    },
+#    pgp_key = "stretch_archive_key",
+#)
 
 ##########################################################
 # CONTAINER IMAGES
