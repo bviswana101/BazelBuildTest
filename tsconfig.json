@@ -1,0 +1,39 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["ES2017"],
+    "declaration": true,
+    "declarationDir": "dist/",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "noEmitOnError": true,
+    "pretty": true,
+    "sourceMap": true,
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": "./",
+    "paths": {
+      "blockheads/*": ["*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./ts/types/"],
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "exclude": [
+    "node_modules/",
+    "ts/**/node_modules/",
+    "dist/",
+    "kubernetes/",
+    "tekton/",
+    "bazel-bin/",
+    "bazel-out/",
+    "bazel-common-blockchain-services/"
+  ]
+}

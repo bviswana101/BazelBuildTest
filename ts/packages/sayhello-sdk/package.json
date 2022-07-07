@@ -1,0 +1,11 @@
+{
+    "name": "@bcs/sayhello-sdk",
+    "version": "0.1.2",
+    "description": "NodeJS client for @bcs/sayhello-sdk",
+    "repository": "https://github.ibm.com/FoodSafety/common-blockchain-services",
+    "author": "OpenAPI-Generator Contributors",
+    "license": "IBM",
+    "publishConfig": {
+        "registry": "https://na.artifactory.swg-devops.com:443/artifactory/api/npm/blockchain-solutions-npm-local/"
+    }
+}

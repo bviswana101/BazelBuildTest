@@ -1,0 +1,18 @@
+{
+  "extends": "../../../tsconfig.json",
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "**/*.spec.ts",
+    "**/*.integration.ts",
+    "**/*.system.ts",
+    "dist/**/*.ts"
+  ],
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "outDir": "dist/",
+    "declarationDir": "dist/"
+  }
+}

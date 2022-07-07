@@ -1,0 +1,209 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Say Hello",
+    "description": "Say Hello",
+    "version": "0.1.2"
+  },
+  "paths": {
+    "/say/hello/{name}": {
+      "parameters": [
+        {
+          "in": "path",
+          "name": "name",
+          "description": "name to say hello to",
+          "schema": {
+            "type": "string"
+          },
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "get a say hello response to someone",
+        "operationId": "get_say_hello",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "nickname",
+            "description": "nickname",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "repeat",
+            "description": "repeat",
+            "schema": {
+              "type": "number",
+              "minimum": 1,
+              "maximum": 2
+            }
+          },
+          {
+            "in": "header",
+            "name": "x-use-nickname",
+            "description": "should use nickname",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hello message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "say hello",
+        "operationId": "post_say_hello",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HelloRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Hello message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HelloResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/say/goodbye/{name}": {
+      "get": {
+        "summary": "get a say goodbye response to someone",
+        "operationId": "get_say_goobye",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "name",
+            "description": "name to say goodbye to",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Goodbye message",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/GoodbyeResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HelloRequest": {
+        "type": "object",
+        "properties": {
+          "use_nickname": {
+            "description": "use nickname",
+            "type": "boolean"
+          },
+          "really_use_nickname": {
+            "description": "are you sure",
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "nickname": {
+            "description": "nickname",
+            "type": "string"
+          },
+          "repeat": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 2
+          }
+        },
+        "required": [
+          "use_nickname"
+        ]
+      },
+      "Response": {
+        "description": "response",
+        "type": "object",
+        "properties": {
+          "message": {
+            "description": "message to send back",
+            "type": "string"
+          }
+        }
+      },
+      "HelloResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Response"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "description": "message",
+                "type": "string",
+                "enum": [
+                  "hi",
+                  "hello"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "GoodbyeResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Response"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "message": {
+                "description": "message",
+                "type": "string",
+                "enum": [
+                  "bye",
+                  "goodbye"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

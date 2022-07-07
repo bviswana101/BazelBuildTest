@@ -1,0 +1,43 @@
+# helps gazelle generate appropriate importpaths based on our go.mod file
+# NOTE: IF YOU CHANGE ONE, YOU SHOULD CHANGE THE OTHER
+# gazelle:prefix blockheads
+# TODO: currently ignore go/chaincode because there are some issues with its
+#       dependencies
+# gazelle:exclude go/chaincode
+# gazelle:exclude node_modules
+# update_deb_packages boilerplate
+load("@rules_debian//tools/update_deb_packages:update_deb_packages.bzl", "update_deb_packages")
+load("@bazel_gazelle//:def.bzl", "gazelle")
+
+# automatically generates BUILD files for go projects
+gazelle(name = "gazelle")
+
+# export tsconfig.json so it can be used by ts_* rules in all packages
+# export package.json so it can be used by tests and ts_* rules
+# export VERSION so we can incorporate it into our produced images
+exports_files(
+    [
+        "tsconfig.json",
+        "package.json",
+        "yarn.lock",
+        "VERSION",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+# exports ava config so it is visible to test targets
+exports_files(
+    [
+        "ava.config.unit.js",
+        "ava.config.integration.js",
+        "ava.config.js",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+update_deb_packages(
+    name = "update_deb_packages",
+    pgp_keys = [
+        "@stretch_archive_key//file",
+    ],
+)
