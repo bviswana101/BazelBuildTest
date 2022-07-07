@@ -41,6 +41,7 @@ var (
 
 func init() {
 	utilruntime.Must(clientgoscheme.AddToScheme(scheme))
+	_ = istio.AddToScheme(scheme)
 
 	//+kubebuilder:scaffold:scheme
 }
